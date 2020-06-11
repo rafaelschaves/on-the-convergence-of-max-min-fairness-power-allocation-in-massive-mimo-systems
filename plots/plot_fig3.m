@@ -26,15 +26,15 @@ root_save_png = '../../../../Google Drive/UFRJ/PhD/Codes/user-scheduling-massive
 
 % Loading data
 
-results = zeros(M_SIZ,K_SIZ,R_SIZ,P_SIZ);
+n_low_bound_all = zeros(M_SIZ,K_SIZ,R_SIZ,P_SIZ);
 
 for m = 1:M_SIZ
     for k = 1:K_SIZ
         for p = 1:P_SIZ
             for r = 1:R_SIZ
-                load([root_load 'results_upper_bound_ur_los_M_' num2str(M(m)) '_K_' num2str(K(k)) '_cell_radius_' num2str(radius(r)) '_m_BS_power_' num2str(bs_power(p)) '_W_MC_' num2str(MC) '.mat']);
+                load([root_load 'results_lower_bound_prob_ur_los_M_' num2str(M(m)) '_K_' num2str(K(k)) '_cell_radius_' num2str(radius(r)) '_m_BS_power_' num2str(bs_power(p)) '_W_MC_' num2str(MC) '.mat']);
                 
-                results(m,k,r,p) = result;
+                n_low_bound_all(m,k,r,p) = n_low_bound;
             end
         end
     end
@@ -83,7 +83,7 @@ for m = 1:M_SIZ
         
         set(gcf,'position',[0 0 800 600]);
         
-        bar(cat,reshape(results(m,k,:,:),[],2)/MC,BAR_SIZE)
+        bar(cat,reshape(n_low_bound_all(m,k,:,:),[],2)/MC,BAR_SIZE)
         
         xlabel('Cell radius (m)','fontname',fontname,'fontsize',fontsize);
         ylabel('$\mathrm{Pr}\{\gamma_{\mathrm{r}}^{(3)} < \gamma^{\star}\}$','fontname',fontname,'fontsize',fontsize,'interpreter','latex');

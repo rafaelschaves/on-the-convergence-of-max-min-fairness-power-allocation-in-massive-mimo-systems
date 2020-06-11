@@ -28,7 +28,6 @@ root_save_png = '../../../../Google Drive/UFRJ/PhD/Codes/user-scheduling-massive
 % Loading data
 
 n_it_all    = zeros(M_SIZ,K_SIZ,R_SIZ,P_SIZ,MC,N_ALG);
-time_all    = zeros(M_SIZ,K_SIZ,R_SIZ,P_SIZ,MC,N_ALG);
 
 for p = 1:P_SIZ
     for r = 1:R_SIZ
@@ -38,7 +37,6 @@ for p = 1:P_SIZ
                       '_K_' num2str(K(k)) '_cell_radius_' num2str(radius(r)) ...
                       '_m_BS_power_' num2str(bs_power(p)) '_W_MC_' num2str(MC) '.mat']);
                 n_it_all(m,k,r,p,:,:) = n_it;
-                time_all(m,k,r,p,:,:) = time;
             end
         end
     end
@@ -47,7 +45,6 @@ end
 % Post Processing
 
 n_it_avg = reshape(mean(n_it_all,5),M_SIZ,K_SIZ,R_SIZ,P_SIZ,N_ALG);
-time_avg = reshape(mean(time_all,5),M_SIZ,K_SIZ,R_SIZ,P_SIZ,N_ALG);
 
 % Ploting Figures
 
