@@ -78,7 +78,7 @@ for mc = 1:MC
 end
 
 error_prob  = sum(abs(gamma(:,1) - gamma(:,3)) > 1e-6)/MC;                 % Compute error probability
-n_low_bound = sum(gamma > 1./max_lambda);                                  % Compute the number of times that the right endpoint would work as a left endpoint
+n_low_bound = sum(gamma > 1./lambda_max);                                  % Compute the number of times that the right endpoint would work as a left endpoint
 
 % Results necessary to plot Fig.2
 
